@@ -66,7 +66,7 @@ class LockManager
     loop do
       if locked?
         print "#{host} is locked..."
-        warn "waiting #{sleepcount} seconds."
+        warn "waiting #{sleep_duration} seconds."
         sleep sleep_duration
         sleep_duration *= 2
       else
