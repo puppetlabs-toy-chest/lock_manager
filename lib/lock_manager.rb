@@ -19,18 +19,19 @@ class LockManager
 
   def lock(reason = nil)
     if locked?
-      puts "#{@host} already locked."
+      warn "#{host} already locked."
       return false
     end
-    unsafe_lock(reason)
+    lock!(reason)
   end
 
-  def unsafe_lock(reason = nil)
-    lock_contents = {}
-    lock_contents[:user] = @user
-    lock_contents[:time] = Time.now.to_s
-    lock_contents[:reason] = reason
-    r = @redis.set "node_lock_#{@host}", lock_contents.to_json
+  def lock!(reason = nil)
+    lock_contents = {
+      user:  @user,
+      time: Time.now.to_s,
+      reason: reason
+    }
+    r = @redis.set lock_handle, lock_contents.to_json
     r == 'OK'
   end
 
@@ -38,34 +39,34 @@ class LockManager
   #
   # @return [Bool] whether or not the host is lockd.
   def locked?
-    return true if @redis.get("node_lock_#{@host}")
-    false
+    !!@redis.get(lock_handle)
+  end
+
+  def lock_handle
+    "node_lock_#{host}"
   end
 
   def unlock
-    r = @redis.get("node_lock_#{@host}")
-    if r
-      result  = JSON.parse(r)
-      if result['user'] != @user
-        warn "Refusing to unlock. Lock on #{@host} is owned by #{result['user']}."
-      else
-        return true if unsafe_unlock.is_a?(Integer)
-        return false
-      end
+    return false unless r = redis.get(lock_handle)
+    result = JSON.parse(r)
+    if result['user'] == user
+      unlock!
+    else
+      warn "Refusing to unlock. Lock on #{host} is owned by #{result['user']}."
+      false
     end
-    false
   end
 
-  def unsafe_unlock
-    @redis.del("node_lock_#{@host}")
+  def unlock!
+    redis.del(lock_handle) > 0
   end
 
   def polling_lock(reason = nil)
     sleep_duration = 1
     loop do
       if locked?
-        print "#{@host} is locked..."
-        puts "waiting #{sleepcount} seconds."
+        print "#{host} is locked..."
+        warn "waiting #{sleepcount} seconds."
         sleep sleep_duration
         sleep_duration *= 2
       else
@@ -76,6 +77,6 @@ class LockManager
   end
 
   def inspect
-    @redis.get("node_lock_#{@host}")
+    @redis.get(lock_handle)
   end
 end

@@ -272,7 +272,7 @@ Style/DotPosition:
   Enabled: true
 
 Style/DoubleNegation:
-  Enabled: true
+  Enabled: false
 
 Style/EachWithObject:
   Enabled: true

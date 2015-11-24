@@ -60,6 +60,8 @@ a.polling_lock
 Lock Manager now has tests and rubocop setup. There are basic tests for
 the functionality of lock manager.
 
+Tests assume you have redis running on localhost on the default port.
+
 # License
 Apache Sofware License 2.0
 
