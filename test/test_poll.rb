@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require 'lock_manager'
+require 'test_helper'
 
 class TestLockManagerPoll < MiniTest::Test
   def setup

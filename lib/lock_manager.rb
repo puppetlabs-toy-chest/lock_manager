@@ -17,9 +17,13 @@ class LockManager
     r
   end
 
+  def log(message)
+    warn message
+  end
+
   def lock(reason = nil)
     if locked?
-      warn "#{host} already locked."
+      log "#{host} already locked."
       return false
     end
     lock!(reason)
@@ -55,12 +59,12 @@ class LockManager
 
   def unlock
     if !locked?
-      warn "Refusing to unlock. No lock exists on #{host}."
+      log "Refusing to unlock. No lock exists on #{host}."
       false
     elsif user == lock_user
       unlock!
     else
-      warn "Refusing to unlock. Lock on #{host} is owned by #{lock_user}."
+      log "Refusing to unlock. Lock on #{host} is owned by #{lock_user}."
       false
     end
   end
@@ -74,7 +78,7 @@ class LockManager
     loop do
       if locked?
         print "#{host} is locked..."
-        warn "waiting #{sleep_duration} seconds."
+        log "waiting #{sleep_duration} seconds."
         sleep sleep_duration
         sleep_duration *= 2
       else

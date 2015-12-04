@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require 'lock_manager'
-require 'json'
+require 'test_helper'
 
 class TestLockManagerInspect < MiniTest::Test
   def setup
