@@ -9,6 +9,7 @@ end
 
 task :default => [ :check, :test]
 
+desc "Rubocop"
 task :check do
   sh 'rubocop'
 end

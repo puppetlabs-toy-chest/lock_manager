@@ -17,37 +17,36 @@ The format for the lock is
 
 Create a lock manager object
 
-    a = LockManager.new("redis.delivery.puppetlabs.net", "pe-aix-72-builder", "stahnma")
+    a = LockManager.new(type: 'redis', server: 'localhost')
 
 Check to see if the node is locked.
 
-    a.locked?
+    a.locked? 'pe-aix-72-builder'
     => false
 
 Lock the node
 
-    a.lock
+    a.lock 'pe-aix-72-builder', 'stahnma'
     => true
 
 See the lock
 
-     a.inspect
-     => "{\"user\":\"stahnma\",\"time\":\"2015-11-20 05:55:52 +0000\",\"reason\":null}"
+    a.show
+    => "{\"user\":\"stahnma\",\"time\":\"2015-11-20 05:55:52 +0000\",\"reason\":null}"
 
 Unlock the node
 
-    a.unlock
+    a.unlock 'pe-aix-72-builder', 'stahnma'
     => true
 
 Lock with a purpose
 
-     a.lock("Because I'm looking into a failure")
+     a.lock "Because I'm looking into a failure"
      => true
 
 Ask for a lock, if node is already locked, keep trying and wait until you get one
 
-a.polling_lock
-
+    a.polling_lock('pe-aix-72-builder', 'stahnma')
     pe-aix-72-builder is locked...waiting 1 seconds.
     pe-aix-72-builder is locked...waiting 2 seconds.
     pe-aix-72-builder is locked...waiting 3 seconds.
@@ -62,8 +61,11 @@ the functionality of lock manager.
 
 Tests assume you have redis running on localhost on the default port.
 
+    bundle exec rake
+
 # License
 Apache Sofware License 2.0
 
 # Maintainers
 Michael Stahnke <stahnma@puppetlabs.com>
+Rick Bradley <rick@puppetlabs.com>
