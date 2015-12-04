@@ -31,7 +31,7 @@ class LockManager
       time: Time.now.to_s,
       reason: reason
     }
-    r = @redis.set lock_handle, lock_contents.to_json
+    r = redis.set lock_handle, lock_contents.to_json
     r == 'OK'
   end
 
@@ -39,7 +39,7 @@ class LockManager
   #
   # @return [Bool] whether or not the host is lockd.
   def locked?
-    !!@redis.get(lock_handle)
+    !!redis.get(lock_handle)
   end
 
   def lock_handle
@@ -77,6 +77,6 @@ class LockManager
   end
 
   def inspect
-    @redis.get(lock_handle)
+    redis.get(lock_handle)
   end
 end
