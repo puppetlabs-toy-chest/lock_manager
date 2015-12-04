@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'json'
 require 'lock_manager'
 
-class LockManager
+class LockManagerWorker
   def log(*)
   end
 end
