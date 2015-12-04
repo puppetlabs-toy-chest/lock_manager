@@ -46,13 +46,21 @@ class LockManager
     "node_lock_#{host}"
   end
 
+  def lock_user
+    lock_data = redis.get lock_handle
+    return false unless lock_data
+    result = JSON.parse lock_data
+    result['user']
+  end
+
   def unlock
-    return false unless r = redis.get(lock_handle)
-    result = JSON.parse(r)
-    if result['user'] == user
+    if !locked?
+      warn "Refusing to unlock. No lock exists on #{host}."
+      false
+    elsif user == lock_user
       unlock!
     else
-      warn "Refusing to unlock. Lock on #{host} is owned by #{result['user']}."
+      warn "Refusing to unlock. Lock on #{host} is owned by #{lock_user}."
       false
     end
   end
