@@ -3,6 +3,6 @@ require 'json'
 require 'lock_manager'
 
 class LockManager
-  def warn(*)
+  def log(*)
   end
 end
