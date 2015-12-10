@@ -1,5 +1,5 @@
 require 'json'
-require 'lock_manager/redis_connection'
+require 'lock_manager/worker'
 require 'lock_manager/connection'
 
 class LockManager

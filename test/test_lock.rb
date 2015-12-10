@@ -11,7 +11,7 @@ class TestLockManagerLock < MiniTest::Test
   end
 
   def test_check_lock
-    @rlm.lock('pe-aix-72-builder', 'stahnma')
+    @rlm.lock('pe-aix-72-builder', 'stahnma', 'because reasons')
     assert_equal true, @rlm.locked?('pe-aix-72-builder')
   end
 

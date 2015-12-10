@@ -1,4 +1,4 @@
-require 'lock_manager/redis_connection'
+require 'lock_manager/connection'
 class LockManager
   class Worker
     attr_reader :connection, :host, :user
@@ -6,7 +6,6 @@ class LockManager
     def initialize(connection, host)
       @connection = connection
       @host = host.split('.')[0]
-      @user = user
     end
 
     def lock(user, reason = nil)

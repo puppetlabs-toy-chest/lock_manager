@@ -140,7 +140,7 @@ Style/AsciiComments:
 Style/Attr:
   Enabled: true
 
-Style/Blocks:
+Style/BlockDelimiters:
   Enabled: true
 
 Style/BracesAroundHashParameters:
@@ -298,7 +298,13 @@ Style/EmptyLines:
 Style/EmptyLinesAroundAccessModifier:
   Enabled: true
 
-Style/EmptyLinesAroundBody:
+Style/EmptyLinesAroundClassBody:
+  Enabled: true
+
+Style/EmptyLinesAroundModuleBody:
+  Enabled: true
+
+Style/EmptyLinesAroundMethodBody:
   Enabled: true
 
 Style/EmptyLiteral:
@@ -363,7 +369,7 @@ Style/UnlessElse:
   Enabled: true
 
 # This pushes preference for shell commands as backticks instead of %x
-Style/UnneededPercentX:
+Style/CommandLiteral:
   Enabled: true
 
 Style/VariableInterpolation:
@@ -484,7 +490,5 @@ Style/IfWithSemicolon:
 Style/Encoding:
   Enabled: false
 
-# We have 4 violations here currently. Fixes these will take a bit of work,
-# so once RE-5565 is resolved, this should be enabled.
 Metrics/PerceivedComplexity:
   Enabled: true

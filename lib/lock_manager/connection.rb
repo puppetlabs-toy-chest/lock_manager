@@ -5,6 +5,7 @@ class LockManager
     def self.connection_class(type)
       case type.to_s
       when 'redis'
+        require 'lock_manager/redis_connection'
         LockManager::RedisConnection
       else
         fail ArgumentError, "Unknown connection type: #{type}"

@@ -11,7 +11,7 @@ json value in redis.
 The format for the lock is
 
     {"user":"stahnma","time":"2015-11-20 05:35:40 +0000",
-    "reason":"Becasue reasons"}
+    "reason":"Because reasons"}
 
 ## Usage
 
@@ -41,7 +41,7 @@ Unlock the node
 
 Lock with a purpose
 
-     a.lock "Because I'm looking into a failure"
+     a.lock 'pe-aix-72-builder', 'stahnma', "Because I'm looking into a failure"
      => true
 
 Ask for a lock, if node is already locked, keep trying and wait until you get one

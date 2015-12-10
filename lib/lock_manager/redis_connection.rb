@@ -1,5 +1,4 @@
 require 'redis'
-require 'lock_manager/connection'
 
 class LockManager
   class RedisConnection < LockManager::Connection

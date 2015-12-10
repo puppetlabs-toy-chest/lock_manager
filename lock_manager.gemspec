@@ -10,8 +10,8 @@ Gem::Specification.new do |gem|
   gem.license = 'Apache-2.0'
 
   gem.authors  = ['Michael Stahnke']
-  gem.email    = 'mastahnke@gmail.com'
-  gem.homepage = 'http://github.com/stahnma/lock_manager'
+  gem.email    = 'stahnma@puppetlabs.com'
+  gem.homepage = 'http://github.com/puppetlabs/lock_manager'
   gem.specification_version = 3
   gem.required_ruby_version = '~> 2.1'
 
