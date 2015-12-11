@@ -1,11 +1,16 @@
 require 'lock_manager/connection'
+require 'resolv'
 class LockManager
   class Worker
     attr_reader :connection, :host, :user
 
     def initialize(connection, host)
       @connection = connection
-      @host = host.split('.')[0]
+      if host =~ Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex)
+        fail ArgumentError, 'Please use a DNS name rather than an IP address.'
+      else
+        @host = host.split('.')[0]
+      end
     end
 
     def lock(user, reason = nil)
