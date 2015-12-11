@@ -9,6 +9,12 @@ class LockManager
       if host =~ Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex)
         fail ArgumentError, 'Please use a DNS name rather than an IP address.'
       else
+        # Using the shortname of the host has the downside of being unable to
+        # lock two hosts with the same shortname and different domains.
+        # However, since the majority of users interact with shortname only,
+        # we're using shortname to normalize and prevent the system from
+        # allowing a lock on aixbuilder1 if aixbuilder1.delivery.puppetlabs.net
+        # is locked.
         @host = host.split('.')[0]
       end
     end
@@ -33,7 +39,7 @@ class LockManager
 
     # Boolean to figure out if a host is locked.
     #
-    # @return [Bool] whether or not the host is lockd.
+    # @return [Bool] whether or not the host is locked.
     def locked?
       !!connection.read(host)
     end
