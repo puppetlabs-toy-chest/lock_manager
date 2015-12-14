@@ -15,6 +15,10 @@ class LockManager
       handle.get key_from_host(host)
     end
 
+    def write_if_not_exists(host, value)
+      handle.setnx(key_from_host(host), value)
+    end
+
     def write(host, value)
       handle.set(key_from_host(host), value)
     end

@@ -20,11 +20,14 @@ class LockManager
     end
 
     def lock(user, reason = nil)
-      if locked?
-        log "#{host} already locked."
-        return false
-      end
-      lock!(user, reason)
+      lock_contents = {
+        user:  user,
+        time: Time.now.to_s,
+        reason: reason
+      }
+      r = connection.write_if_not_exists host, lock_contents.to_json
+      log "#{host} already locked." if r == false
+      r
     end
 
     def lock!(user, reason = nil)
