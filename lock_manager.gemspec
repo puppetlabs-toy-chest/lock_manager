@@ -9,8 +9,8 @@ Gem::Specification.new do |gem|
   gem.description = 'A simple interface for locking hardware resources available via ruby and backed by redis.'
   gem.license = 'Apache-2.0'
 
-  gem.authors  = ['Michael Stahnke']
-  gem.email    = 'stahnma@puppetlabs.com'
+  gem.authors  = ['Puppet Labs']
+  gem.email    = 'info@puppetlabs.com'
   gem.homepage = 'http://github.com/puppetlabs/lock_manager'
   gem.specification_version = 3
   gem.required_ruby_version = '~> 2.1'
