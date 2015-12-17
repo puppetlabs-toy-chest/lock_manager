@@ -20,6 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('redis', '>= 3.2')
   gem.require_path = 'lib'
 
-  gem.files = Dir['{lib}', 'README*', 'LICENSE*'] & `git ls-files -z`.split("\0")
+  gem.files = Dir['lib/**/*.rb', 'README*', 'LICENSE*'] & `git ls-files -z`.split("\0")
   gem.test_files = Dir['test/**/*.rb']
 end
