@@ -72,15 +72,13 @@ class LockManager
 
     def polling_lock(user, reason = nil)
       sleep_duration = 1
+      return lock(user, reason) unless locked?
       loop do
-        if locked?
-          log "#{host} is locked..."
-          log "waiting #{sleep_duration} seconds."
-          sleep sleep_duration
-          sleep_duration *= 2
-        else
-          break
-        end
+        log "#{host} is locked..."
+        log "waiting #{sleep_duration} seconds."
+        sleep sleep_duration
+        sleep_duration *= 2
+        break unless locked?
       end
       lock(user, reason)
     end

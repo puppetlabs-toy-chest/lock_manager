@@ -207,9 +207,6 @@ Style/SpaceInsideParens:
 Style/LeadingCommentSpace:
   Enabled: true
 
-Style/SingleSpaceBeforeFirstArg:
-  Enabled: true
-
 Style/SpaceAfterColon:
   Enabled: true
 
@@ -328,7 +325,10 @@ Style/TrailingWhitespace:
 Style/StringLiterals:
   Enabled: true
 
-Style/TrailingComma:
+Style/TrailingCommaInLiteral:
+  Enabled: true
+
+Style/TrailingCommaInArguments:
   Enabled: true
 
 Style/GlobalVars:
@@ -475,7 +475,7 @@ Metrics/ParameterLists:
 Lint/RequireParentheses:
   Enabled: true
 
-Lint/SpaceBeforeFirstArg:
+Style/SpaceBeforeFirstArg:
   Enabled: true
 
 Style/ModuleFunction:
