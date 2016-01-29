@@ -1,3 +1,7 @@
+
+require 'simplecov'
+SimpleCov.start
+
 require 'minitest/autorun'
 require 'json'
 require 'lock_manager'
