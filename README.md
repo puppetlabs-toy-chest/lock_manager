@@ -1,5 +1,7 @@
 # Lock Manager
 
+[![Build Status](https://travis-ci.org/puppetlabs/lock_manager.svg?branch=master)](https://travis-ci.org/puppetlabs/lock_manager)
+
 Lock manager is designed to be a small helper gem that provides common methods
 for locking and unlocking hardware.
 
