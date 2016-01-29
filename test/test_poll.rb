@@ -11,6 +11,13 @@ class TestLockManagerPoll < MiniTest::Test
   end
 
   def test_polling_lock_when_locked_already
-    skip "I don't know how to test the case where it is locked, since it just blocks"
+    assert_raises Timeout::Error do
+      Timeout.timeout(3) do
+        @rlm.lock('pe-aix-72-builder', 'stahnma')
+        @rlm.polling_lock('pe-aix-72-builder', 'stahnma')
+      end
+    end
+
+    assert @rlm.locked?('pe-aix-72-builder')
   end
 end
