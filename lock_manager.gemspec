@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.email    = 'info@puppetlabs.com'
   gem.homepage = 'http://github.com/puppetlabs/lock_manager'
   gem.specification_version = 3
-  gem.required_ruby_version = '~> 2.1'
+  gem.required_ruby_version = '>= 1.9.3'
 
   gem.add_development_dependency('yard', '~> 0.8')
   gem.add_development_dependency('minitest')
