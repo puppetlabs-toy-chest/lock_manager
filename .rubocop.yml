@@ -213,10 +213,10 @@ Style/SpaceAfterColon:
 Style/SpaceAfterComma:
   Enabled: true
 
-Style/SpaceAfterControlKeyword:
+Style/SpaceAfterMethodName:
   Enabled: true
 
-Style/SpaceAfterMethodName:
+Style/SpaceAroundKeyword:
   Enabled: true
 
 Style/SpaceAfterNot:

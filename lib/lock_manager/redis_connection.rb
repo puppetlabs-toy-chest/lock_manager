@@ -6,7 +6,7 @@ class LockManager
 
     def initialize(options = {})
       super
-      fail ArgumentError, ':server option is mandatory for redis connections' unless options[:server]
+      raise ArgumentError, ':server option is mandatory for redis connections' unless options[:server]
       @server = options[:server]
       @port = options[:port]
     end
