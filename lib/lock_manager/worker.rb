@@ -7,7 +7,7 @@ class LockManager
     def initialize(connection, host)
       @connection = connection
       if host =~ Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex)
-        fail ArgumentError, 'Please use a DNS name rather than an IP address.'
+        raise ArgumentError, 'Please use a DNS name rather than an IP address.'
       else
         # Using the shortname of the host has the downside of being unable to
         # lock two hosts with the same shortname and different domains.

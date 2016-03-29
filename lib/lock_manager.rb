@@ -30,7 +30,7 @@ class LockManager
   end
 
   def connection
-    fail ArgumentError, ':type option is required' unless options[:type]
+    raise ArgumentError, ':type option is required' unless options[:type]
     @connection ||= LockManager::Connection.connection_class(options[:type]).new(options)
   end
 end
