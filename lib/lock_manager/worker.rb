@@ -70,7 +70,7 @@ class LockManager
       result['user']
     end
 
-    def polling_lock(user, reason = nil)
+    def polling_lock(user, reason = nil, max_sleep = 600)
       sleep_duration = 1
       return lock(user, reason) unless locked?
       loop do
@@ -78,6 +78,7 @@ class LockManager
         log "waiting #{sleep_duration} seconds."
         sleep sleep_duration
         sleep_duration *= 2
+        sleep_duration = max_sleep if sleep_duration > max_sleep
         break unless locked?
       end
       lock(user, reason)
