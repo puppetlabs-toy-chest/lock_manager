@@ -67,7 +67,3 @@ Tests assume you have redis running on localhost on the default port.
 
 # License
 Apache Sofware License 2.0
-
-# Maintainers
-Michael Stahnke <stahnma@puppetlabs.com>
-Rick Bradley <rick@puppetlabs.com>

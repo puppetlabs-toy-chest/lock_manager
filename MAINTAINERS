@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "file_format": "This MAINTAINERS file format is described at http://pup.pt/maintainers",
+  "issues": "https://tickets.puppetlabs.com/browse/RE",
+  "people": [
+    {
+      "github": "stahnma",
+      "email": "stahnma@puppet.com",
+      "name": "Michael Stahnke"
+    },
+    {
+      "github": "rick",
+      "email": "rick@puppet.com",
+      "name": "Rick Bradley"
+    }
+  ]
+}
