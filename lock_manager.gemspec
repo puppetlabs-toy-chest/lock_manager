@@ -15,8 +15,6 @@ Gem::Specification.new do |gem|
   gem.specification_version = 3
   gem.required_ruby_version = '>= 1.9.3'
 
-  gem.add_development_dependency('yard', '~> 0.8')
-  gem.add_development_dependency('minitest')
   gem.add_runtime_dependency('redis', '>= 3.2')
   gem.require_path = 'lib'
 
