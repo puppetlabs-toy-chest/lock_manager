@@ -16,7 +16,7 @@ group(:development, :test) do
   # Pin JSON if Ruby isn't at least 2.0.0 -- JSON 2.0.0
   # and up no longer build on Ruby 1.9.3 because 1.9.3
   # is a fossil.
-  gem('json', '< 2.0.0') if ruby_version <= minimum_ruby
+  gem('json', '< 2.0.0') if ruby_version < minimum_ruby
   gem 'minitest'
   gem 'rake'
 end
