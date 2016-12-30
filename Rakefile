@@ -20,11 +20,9 @@ namespace :test do
 end
 
 desc "Run RuboCop"
-RuboCop::RakeTask.new(:rubocop) do |task|
-  task.patterns = ["lib/**/*.rb"]
-end
+RuboCop::RakeTask.new(:rubocop)
 
 desc "Run all spec tests and linters"
 task check: %w(test:spec rubocop)
 
-task default: [ :check, :test]
+task default: [:check]
