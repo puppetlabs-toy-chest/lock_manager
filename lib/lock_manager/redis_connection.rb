@@ -15,8 +15,28 @@ class LockManager
       handle.get key_from_host(host)
     end
 
-    def write_if_not_exists(host, value)
-      handle.setnx(key_from_host(host), value)
+    def write_if_not_exists(host, value, ttl)
+      handle.setnx(key_from_host(host), value) && set_ttl(host, ttl)
+    end
+
+    def set_ttl(host, ttl)
+      handle.expire(key_from_host(host), ttl) unless ttl.nil?
+    end
+
+    def add_resource(platform_tag, host)
+      handle.sadd(resource_pool(platform_tag), host)
+    end
+
+    def remove_resource(platform_tag, host)
+      handle.srem(resource_pool(platform_tag), host)
+    end
+
+    def pool_members(platform_tag)
+      handle.smembers(resource_pool(platform_tag))
+    end
+
+    def resource_pool(platform_tag)
+      "resource_pool_#{platform_tag}"
     end
 
     def write(host, value)

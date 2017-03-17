@@ -19,13 +19,13 @@ class LockManager
       end
     end
 
-    def lock(user, reason = nil)
+    def lock(user, reason = nil, ttl = nil)
       lock_contents = {
         user:  user,
         time: Time.now.to_s,
         reason: reason
       }
-      r = connection.write_if_not_exists host, lock_contents.to_json
+      r = connection.write_if_not_exists host, lock_contents.to_json, ttl
       log "#{host} already locked." if r == false
       r
     end
@@ -87,6 +87,35 @@ class LockManager
     def show
       data = connection.read(host)
       data ? JSON.parse(data) : nil
+    end
+
+    def add_resource(platform_tag, host)
+      r = connection.add_resource platform_tag, host
+      log "unable to add resource #{host}." if r == false
+      r
+    end
+
+    def remove_resource(platform_tag, host)
+      r = connection.remove_resource platform_tag, host
+      log "unable to remove resource #{host}." if r == false
+      r
+    end
+
+    def pool_members(platform_tag)
+      r = connection.pool_members platform_tag
+      log "unable to show pool #{platform_tag}." if r == false
+      r
+    end
+
+    def acquire_lock(platform_tag, user, reason = nil, ttl = nil)
+      pool = pool_members(platform_tag).shuffle
+      pool.each do |host|
+        @host = host
+        next if locked?
+        lock(user, reason, ttl) unless locked?
+        return @host
+      end
+      false
     end
 
     def log(message)
