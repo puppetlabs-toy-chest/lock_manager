@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.specification_version = 3
   gem.required_ruby_version = '>= 1.9.3'
 
-  gem.add_runtime_dependency('redis', '>= 3.2')
+  gem.add_runtime_dependency('redis', ['>= 3.2', '< 4.0'])
   gem.require_path = 'lib'
 
   gem.files = Dir['lib/**/*.rb', 'README*', 'LICENSE*'] & `git ls-files -z`.split("\0")
